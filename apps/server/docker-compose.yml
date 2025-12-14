@@ -1,0 +1,48 @@
+version: "3.8"
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: cloud-craft-mysql-dev
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: boostcamp_dev
+      MYSQL_USER: boostcamp
+      MYSQL_PASSWORD: boostcamp123
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_dev_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  server:
+    build:
+      context: ../..
+      dockerfile: apps/server/Dockerfile
+      target: development
+    container_name: cloud-craft-server-dev
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      NODE_ENV: development
+      PORT: 3000
+      DB_HOST: mysql
+      DB_PORT: 3306
+      DB_USERNAME: boostcamp
+      DB_PASSWORD: boostcamp123
+      DB_DATABASE: boostcamp_dev
+    volumes:
+      - ../../apps/server/src:/app/apps/server/src
+      - ../../apps/server/test:/app/apps/server/test
+    depends_on:
+      mysql:
+        condition: service_healthy
+
+volumes:
+  mysql_dev_data:

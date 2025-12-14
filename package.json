@@ -1,0 +1,23 @@
+{
+  "name": "web29-boostcamp",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "pnpm --filter './apps/*' dev",
+    "build": "pnpm --filter './apps/*' build",
+    "clean": "pnpm --filter './apps/*' clean",
+    "prepare": "husky"
+  },
+  "devDependencies": {
+    "husky": "^9.1.7",
+    "lint-staged": "^16.2.7"
+  },
+  "lint-staged": {
+    "apps/client/**/*.{ts,tsx}": [
+      "pnpm --filter client exec eslint --fix"
+    ],
+    "apps/server/**/*.ts": [
+      "pnpm --filter server exec eslint --fix"
+    ]
+  }
+}
