@@ -6,6 +6,8 @@ import {
   UpdateDateColumn,
   ManyToOne,
   JoinColumn,
+  ManyToMany,
+  JoinTable,
 } from 'typeorm';
 import { Solution } from './solution.entity';
 
@@ -41,4 +43,15 @@ export class Problem {
   @ManyToOne(() => Solution)
   @JoinColumn({ name: 'solution_id' })
   solution: Solution;
+
+  @ManyToMany(() => Problem)
+  @JoinTable({
+    name: 'related_problem',
+    joinColumn: { name: 'problem_id', referencedColumnName: 'id' },
+    inverseJoinColumn: {
+      name: 'related_problem_id',
+      referencedColumnName: 'id',
+    },
+  })
+  related_problems: Problem[];
 }
