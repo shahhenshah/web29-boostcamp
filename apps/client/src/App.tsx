@@ -1,6 +1,8 @@
-import { Routes, Route } from 'react-router-dom'
-import Problem from '@/pages/Problem'
-import NotFound from './pages/NotFound'
+import NotFound from './pages/NotFound';
+
+import { Route, Routes } from 'react-router-dom';
+
+import Problem from '@/pages/Problem';
 
 function App() {
   return (
@@ -8,7 +10,7 @@ function App() {
       <Route path="/" element={<Problem />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
-  )
+  );
 }
 
-export default App
+export default App;
