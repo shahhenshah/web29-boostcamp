@@ -4,12 +4,13 @@
 
 @font-face {
   font-family: 'Pretendard';
-  src: url('../static/fonts/PretendardVariable.woff2') format('woff2');
+  src: url('./fonts/PretendardVariable.woff2') format('woff2');
   font-weight: 100 900;
   font-display: swap;
 }
 
 @theme inline {
+  --font-sans: 'Pretendard', system-ui, -apple-system, sans-serif;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-sidebar-ring: var(--sidebar-ring);
@@ -124,7 +125,6 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground antialiased;
-    font-family: 'Pretendard', Arial;
+    @apply bg-background text-foreground font-sans antialiased;
   }
 }
