@@ -63,8 +63,18 @@ export function StepsNavigator({
 
   return (
     <div className={className}>
-      <Steps steps={steps} currentStep={currentStep} />
-      <div className="mt-6">{steps[currentStep]?.render(renderProps)}</div>
+      <Steps steps={steps} currentStep={currentStep + 1} />
+
+      <div className="grid grid-cols-2 gap-2">
+        <div className="mt-6">{steps[currentStep]?.render(renderProps)}</div>
+
+        <div className="mt-6 p-6">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta,
+          laborum praesentium impedit natus possimus similique illo numquam?
+          Sapiente, in consequuntur. Iure voluptates ducimus illum nesciunt
+          neque minus laboriosam officia repellat.
+        </div>
+      </div>
     </div>
   )
 }

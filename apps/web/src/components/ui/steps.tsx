@@ -23,7 +23,7 @@ function Steps({ steps, currentStep, onStepClick, className }: StepsProps) {
   return (
     <nav
       aria-label="Progress"
-      className={cn(className, 'mx-auto max-w-4xl overflow-y-auto')}
+      className={cn(className, 'mx-auto max-w-4xl overflow-y-auto px-6')}
     >
       <div className="w-full overflow-x-auto">
         <ol className="flex min-w-max items-center gap-2 px-2">
